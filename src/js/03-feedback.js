@@ -19,10 +19,22 @@ if (parsedFormData) {
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  console.log(localStorage.getItem(KEY_LOCAL));
+  const formElements = evt.currentTarget.elements;
+  const email = formElements.email.value;
+  const message = formElements.message.value;
+  const formData = {
+    email,
+    message,
+  };
 
-  evt.currentTarget.reset();
-  localStorage.removeItem(KEY_LOCAL);
+  if (email === '' || message === '') {
+    alert('Всі поля повинні бути заповнені 🛑📝😊');
+  } else {
+    console.log(formData);
+
+    evt.currentTarget.reset();
+    localStorage.removeItem(KEY_LOCAL);
+  }
 }
 
 function onFormInput() {
