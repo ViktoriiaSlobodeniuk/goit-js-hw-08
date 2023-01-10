@@ -16,18 +16,18 @@ if (parsedFormData) {
   }
 }
 
+function getFormData() {
+  return {
+    email: formEl.elements.email.value,
+    message: formEl.elements.message.value,
+  };
+}
+
 function onFormSubmit(evt) {
   evt.preventDefault();
+  const formData = getFormData();
 
-  const formElements = evt.currentTarget.elements;
-  const email = formElements.email.value;
-  const message = formElements.message.value;
-  const formData = {
-    email,
-    message,
-  };
-
-  if (email === '' || message === '') {
+  if (formData.email === '' || formData.message === '') {
     alert('Всі поля повинні бути заповнені 🛑📝😊');
   } else {
     console.log(formData);
@@ -38,9 +38,6 @@ function onFormSubmit(evt) {
 }
 
 function onFormInput() {
-  const formData = {
-    email: formEl.elements.email.value,
-    message: formEl.elements.message.value,
-  };
+  const formData = getFormData();
   localStorage.setItem(KEY_LOCAL, JSON.stringify(formData));
 }
